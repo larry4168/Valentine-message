@@ -104,10 +104,6 @@ p {
 
 <body>
 
-<audio autoplay loop>
-    <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
-</audio>
-
 <div class="card">
     <img src="us.JPG" class="love-img" alt="Our Picture">
     <h1>Ayoola ❤️</h1>
@@ -117,10 +113,21 @@ p {
     </p>
 </div>
 
-<button class="love-btn" onclick="openLovePage()">Will You Be My Valentine? 💍</button>
+
+<audio id="bg-music" loop>
+  <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+</audio>
+
+<button class="love-btn" onclick="openLovePageAndPlayMusic()">Will You Be My Valentine? 💍</button>
 
 <script>
-
+function openLovePageAndPlayMusic() {
+    // Play the music
+    document.getElementById('bg-music').play();
+    
+    // Open your Valentine page
+    openLovePage(); // Keep your existing function
+}
 function openLovePage() {
     document.body.innerHTML = `
     <div style="
