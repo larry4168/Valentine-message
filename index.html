@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For My Love Ayoola ❤️</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Poppins:wght@300;400&display=swap" rel="stylesheet">
+
+<style>
+
+body {
+    margin: 0;
+    padding: 0 20px;
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #ffccd5, #ffc2d1, #ffb3c6);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: #5a2a3b;
+    overflow-x: hidden;
+}
+
+/* Card */
+.card {
+    background: rgba(255, 255, 255, 0.35);
+    backdrop-filter: blur(15px);
+    padding: 50px 35px;
+    border-radius: 25px;
+    width: 100%;
+    max-width: 500px;
+    box-shadow: 0 30px 60px rgba(0,0,0,0.15);
+    margin: 40px 0;
+    animation: fadeIn 1.5s ease;
+}
+
+h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 38px;
+    margin-bottom: 20px;
+}
+
+p {
+    font-size: 18px;
+    line-height: 1.8;
+    margin-bottom: 25px;
+}
+
+/* Romantic Image */
+.love-img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 25px;
+    box-shadow: 0 10px 30px rgba(255, 77, 109, 0.6);
+    border: 4px solid white;
+    animation: fadeIn 2s ease;
+}
+
+/* Floating Button */
+.love-btn {
+    position: fixed;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 15px 40px;
+    border-radius: 40px;
+    border: none;
+    background: linear-gradient(135deg, #ff4d6d, #ff758f);
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    box-shadow: 0 15px 35px rgba(255, 77, 109, 0.4);
+    transition: all 0.3s ease;
+}
+
+.love-btn:hover {
+    transform: translateX(-50%) scale(1.08);
+}
+
+/* Hearts */
+.heart {
+    position: absolute;
+    font-size: 18px;
+    animation: floatUp 6s linear infinite;
+    opacity: 0.8;
+}
+
+@keyframes floatUp {
+    from { transform: translateY(100vh); opacity: 1; }
+    to { transform: translateY(-10vh); opacity: 0; }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+</style>
+</head>
+
+<body>
+
+<audio autoplay loop>
+    <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+</audio>
+
+<div class="card">
+    <img src="us.JPG" class="love-img" alt="Our Picture">
+    <h1>Ayoola ❤️</h1>
+    <p>
+        You are elegance. You are peace.  
+        And today, I have one beautiful question for you…
+    </p>
+</div>
+
+<button class="love-btn" onclick="openLovePage()">Will You Be My Valentine? 💍</button>
+
+<script>
+
+function openLovePage() {
+    document.body.innerHTML = `
+    <div style="
+        padding: 60px 25px;
+        min-height: 100vh;
+        display:flex;
+        justify-content:center;
+        align-items:center;
+        background: linear-gradient(135deg, #ffccd5, #ffc2d1, #ffb3c6);
+        font-family:'Poppins', sans-serif;
+        color:#5a2a3b;">
+
+        <div style="
+            background: rgba(255,255,255,0.4);
+            backdrop-filter: blur(15px);
+            padding: 60px 40px;
+            border-radius: 30px;
+            max-width: 550px;
+            width:100%;
+            box-shadow:0 20px 40px rgba(0,0,0,0.15);
+            text-align:center;">
+
+            <img src='us.JPG' style='width:170px;height:170px;border-radius:50%;object-fit:cover;margin-bottom:30px;border:4px solid white;box-shadow:0 15px 35px rgba(255,77,109,0.5);'>
+
+            <h1 style="font-family:'Playfair Display', serif; font-size:36px; margin-bottom:30px;">
+                Happy Valentine My Love ❤️
+            </h1>
+
+            <p style="font-size:18px; line-height:1.9;">
+                My Dearest Ayoola,<br><br>
+
+                Loving you has been the most beautiful journey of my life.
+                Your smile softens my hardest days.
+                Your presence completes my world.<br><br>
+
+                I promise to honor you, cherish you,
+                support you, and love you deeply —
+                today and always.<br><br>
+
+                You are my heart. You are my forever.<br><br>
+
+                With all my love,<br>
+                <strong>Olanrewaju ❤️</strong>
+            </p>
+
+        </div>
+    </div>
+    `;
+}
+
+// Floating Hearts
+setInterval(() => {
+    const heart = document.createElement("div");
+    heart.className = "heart";
+    heart.innerHTML = "💖";
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.fontSize = (Math.random() * 20 + 15) + "px";
+    document.body.appendChild(heart);
+
+    setTimeout(() => heart.remove(), 6000);
+}, 400);
+
+</script>
+
+</body>
+</html>
