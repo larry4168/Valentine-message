@@ -8,7 +8,6 @@
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Poppins:wght@300;400&display=swap" rel="stylesheet">
 
 <style>
-
 body {
     margin: 0;
     padding: 0 20px;
@@ -23,7 +22,6 @@ body {
     overflow-x: hidden;
 }
 
-/* Card */
 .card {
     background: rgba(255, 255, 255, 0.35);
     backdrop-filter: blur(15px);
@@ -48,7 +46,6 @@ p {
     margin-bottom: 25px;
 }
 
-/* Romantic Image */
 .love-img {
     width: 150px;
     height: 150px;
@@ -57,31 +54,26 @@ p {
     margin-bottom: 25px;
     box-shadow: 0 10px 30px rgba(255, 77, 109, 0.6);
     border: 4px solid white;
-    animation: fadeIn 2s ease;
 }
 
-/* Floating Button */
-.love-btn {
-    position: fixed;
-    bottom: 30px;
-    left: 50%;
-    transform: translateX(-50%);
-    padding: 15px 40px;
-    border-radius: 40px;
+button {
+    padding: 12px 35px;
+    margin: 10px;
+    border-radius: 30px;
     border: none;
     background: linear-gradient(135deg, #ff4d6d, #ff758f);
     color: white;
     font-size: 16px;
     cursor: pointer;
-    box-shadow: 0 15px 35px rgba(255, 77, 109, 0.4);
+    box-shadow: 0 10px 30px rgba(255, 77, 109, 0.4);
     transition: all 0.3s ease;
 }
 
-.love-btn:hover {
-    transform: translateX(-50%) scale(1.08);
+button:hover {
+    transform: scale(1.08);
 }
 
-/* Hearts */
+/* Floating Hearts */
 .heart {
     position: absolute;
     font-size: 18px;
@@ -89,6 +81,7 @@ p {
     opacity: 0.8;
 }
 
+/* Animations */
 @keyframes floatUp {
     from { transform: translateY(100vh); opacity: 1; }
     to { transform: translateY(-10vh); opacity: 0; }
@@ -99,36 +92,67 @@ p {
     to { opacity: 1; transform: translateY(0); }
 }
 
+/* Slide in animation for No page */
+@keyframes slideIn {
+    from { transform: translateY(100vh); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+.slide-in {
+    animation: slideIn 0.8s ease forwards;
+}
+
 </style>
 </head>
-
 <body>
 
-<div class="card">
-    <img src="us.JPG" class="love-img" alt="Our Picture">
-    <h1>Ayoola ❤️</h1>
-    <p>
-        You are elegance. You are peace.  
-        And today, I have one beautiful question for you…
-    </p>
-</div>
-
-<audio id="bg-music" loop preload="auto">
+<audio id="bg-music" loop>
   <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
-  Your browser does not support the audio element.
 </audio>
 
-<button class="love-btn" onclick="openLovePageAndPlayMusic()">Will You Be My Valentine? 💍</button>
+<div class="card" id="main-card">
+    <img src="us.JPG" class="love-img" alt="Our Picture">
+    <h1>Ayoola ❤️</h1>
+    <p>You are elegance. You are peace.<br>And today, I have one beautiful question for you…</p>
+    <h2>Will you be my Valentine 💍</h2>
+    <button onclick="yesClicked()">Yes</button>
+    <button onclick="noClicked()">No</button>
+</div>
 
 <script>
-function openLovePageAndPlayMusic() {
-    // Play the music
-    document.getElementById('bg-music').play();
-    
-    // Open your Valentine page
-    openLovePage(); // Keep your existing function
+// Play background music
+const music = document.getElementById('bg-music');
+
+// Yes clicked → show Valentine message
+function yesClicked() {
+    music.play();
+    showMessagePage();
 }
-function openLovePage() {
+
+// No clicked → show "please be my Valentine" page with Yes/No buttons again
+function noClicked() {
+        const mainCard = document.getElementById('main-card');
+    
+        // Remove existing class to re-trigger animation
+        mainCard.classList.remove("slide-in");
+    
+        // Force reflow to restart the animation
+        void mainCard.offsetWidth;
+    
+        // Apply slide-in class again
+        mainCard.classList.add("slide-in");
+    
+        // Update content
+        mainCard.innerHTML = `
+            <h1>Oh no 😢</h1>
+            <p>Please be my Valentine 💍</p>
+            <button onclick="yesClicked()">Yes</button>
+            <button onclick="noClicked()">No</button>
+        `;
+}
+
+// Valentine message page
+function showMessagePage() {
     document.body.innerHTML = `
     <div style="
         padding: 60px 25px;
@@ -139,7 +163,6 @@ function openLovePage() {
         background: linear-gradient(135deg, #ffccd5, #ffc2d1, #ffb3c6);
         font-family:'Poppins', sans-serif;
         color:#5a2a3b;">
-
         <div style="
             background: rgba(255,255,255,0.4);
             backdrop-filter: blur(15px);
@@ -149,30 +172,20 @@ function openLovePage() {
             width:100%;
             box-shadow:0 20px 40px rgba(0,0,0,0.15);
             text-align:center;">
-
             <img src='us.JPG' style='width:170px;height:170px;border-radius:50%;object-fit:cover;margin-bottom:30px;border:4px solid white;box-shadow:0 15px 35px rgba(255,77,109,0.5);'>
-
-            <h1 style="font-family:'Playfair Display', serif; font-size:36px; margin-bottom:30px;">
-                Happy Valentine My Love ❤️
-            </h1>
-
+            <h1 style="font-family:'Playfair Display', serif; font-size:36px; margin-bottom:30px;">Happy Valentine My Love ❤️</h1>
             <p style="font-size:18px; line-height:1.9;">
                 My Dearest Ayoola,<br><br>
-
                 Loving you has been the most beautiful journey of my life.
                 Your smile softens my hardest days.
                 Your presence completes my world.<br><br>
-
                 I promise to honor you, cherish you,
                 support you, and love you deeply —
                 today and always.<br><br>
-
                 You are my heart. You are my forever.<br><br>
-
                 With all my love,<br>
                 <strong>Olanrewaju ❤️</strong>
             </p>
-
         </div>
     </div>
     `;
@@ -186,11 +199,9 @@ setInterval(() => {
     heart.style.left = Math.random() * 100 + "vw";
     heart.style.fontSize = (Math.random() * 20 + 15) + "px";
     document.body.appendChild(heart);
-
     setTimeout(() => heart.remove(), 6000);
 }, 400);
 
 </script>
-
 </body>
 </html>
